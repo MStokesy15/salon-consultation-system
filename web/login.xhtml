@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- XML namespace declarations for using required XML tags -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        
+        <title>The Hair Salon - Login</title>
+        
+        <!-- Set the character set and viewport size -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Import local CSS -->        
+        <link rel="stylesheet" href="/SalonConsultationSystemJava/css/login.css"/>
+    </h:head>
+    <h:body>
+        <!-- Sign in box -->
+        <div class="container">
+            <h:form class="form-signin" a:name="loginForm" a:method="POST" a:action="j_security_check">
+                <h2 class="form-signin-heading">Please Sign In</h2>
+                <h:outputLabel for="inputEmail" class="sr-only" value="Email address"/>
+                <h:inputText a:type="email" a:name="j_username" id="inputEmail" class="form-control" a:placeholder="Email address" a:reqiured="required" a:autofocus="auto"/>
+                <h:outputLabel for="inputPassword" class="sr-only" value="Password"/>
+                <h:inputText a:type="password" a:name="j_password" id="inputPassword" class="form-control" a:placeholder="Password"  a:reqiured="required"/>
+                <h:commandButton action="/user_portal/home.xhtml?faces-redirect=true" class="btn btn-lg btn-primary btn-block btn-grey" value="Login" type="submit"/>
+                <a class="btn btn-lg btn-primary btn-block btn-grey" href="/SalonConsultationSystemJava/account_creation/createaccount.xhtml">Create Account</a>
+                <a class="btn btn-lg btn-primary btn-block btn-grey" href="/SalonConsultationSystemJava/index.xhtml">Cancel</a>
+            </h:form>
+        </div> <!-- /container -->
+    </h:body>
+</html>

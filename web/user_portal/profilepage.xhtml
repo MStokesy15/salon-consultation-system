@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- XML namespace declarations for using required XML tags -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        
+        <title>The Hair Salon - Profile Page</title>
+        
+        <!-- Set the character set and viewport size -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Import local CSS -->
+        <link rel="stylesheet" href="../css/userportalcss.css"/>
+    </h:head>
+    <h:body>
+        <!-- Link for logout action control -->
+        <h:form id="logoutForm">
+            <h:commandLink id="logoutBtn" action="#{logoutBean.logout}"/>
+        </h:form>
+
+        <!-- Navigation functionality, uses Bootstrap media queries -->
+        <div class="navbar-wrapper">
+            <!-- Wrap the page and navbar in a container to centre content -->
+            <div class="container">
+                <!-- Create an inverse coloured (grey and black) navbar -->
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <!-- Navbar mobile view collapsible menu button -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="../index.xhtml">The Hair Salon</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="home.xhtml"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                                <li class="active"><a href="profilepage.xhtml"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                <li><a href="../consultation/hairstyling.xhtml"><span class="glyphicon glyphicon-scissors"></span> Hairstyling Consultation</a></li>
+                                <li><a href="../consultation/colour.xhtml"><span class="glyphicon glyphicon-filter"></span> Colour Consultation</a></li>   
+                                <li><a href="../user_portal/viewpreviousvisits.xhtml"><span class="glyphicon glyphicon-info-sign"></span> Visit History</a></li>
+                                <c:if test="#{userProfileBean.isStylist}">
+                                    <li><a href="../stylist_portal/viewuserprofiles.xhtml"><span class="glyphicon glyphicon-star"></span> Manage Customers</a></li>
+                                </c:if>
+                                <li><a onclick="$('#logoutForm\\:logoutBtn').click()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Wrap the rest of the page in another container to center all the content. -->
+                <div>
+                    <div class="container extra-padding">
+
+                        <h3 class="bigtext">Welcome to your profile</h3>
+
+                        <p class="midtext">Please check your details and click save to complete.</p>
+
+                        <f:view>
+                            <h:form id="profileUpdate">
+                                <!-- Table of user details -->
+                                <h:panelGrid id="renderBlock" columns="2">
+                                    <h:outputLabel value="First Name:" class="smalltextlbl" for="firstName" />
+                                    <h:inputText class="form-control" style="margin-bottom: 5px; min-width: 200px;" id="firstName" value="#{userProfileBean.firstName}" title="FirstName" />
+                                    <h:outputLabel value="Last Name:" class="smalltextlbl" for="lastName" />
+                                    <h:inputText class="form-control" style="margin-bottom: 5px; min-width: 200px;" id="lastName" value="#{userProfileBean.lastName}" title="LastName" />
+                                    <h:outputLabel value="Tel:" class="smalltextlbl" for="tel" />
+                                    <h:inputText class="form-control" style="margin-bottom: 5px; min-width: 200px;" id="tel" value="#{userProfileBean.tel}" title="Tel"/>
+                                    <!-- Hidden the e-mail pending fix to DB, issue #36, #37 - MS 15/08/2017-->
+                                    <h:outputLabel value="" class="smalltextlbl" for="email" />
+                                    <h:inputHidden a:hidden="hidden" class="form-control" a:style="margin-bottom: 5px; min-width: 200px;" id="email" a:type="email" value="#{userProfileBean.username}" a:title="Email" />
+                                </h:panelGrid>
+                                <h:commandLink id="saveUpdatedProfile" action="#{userProfileBean.saveUpdatedProfile()}"/>
+                                <a class="btn btn-primary btn-padding" onclick="$('#profileUpdate\\:saveUpdatedProfile').click()">Save</a>
+                            </h:form>
+                        </f:view>
+                    </div>
+                </div>
+                <footer>
+                </footer>
+            </div>
+        </div>
+    </h:body>
+</html>

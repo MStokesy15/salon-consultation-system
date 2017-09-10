@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- XML namespace declarations for using required XML tags -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>The Hair Salon - Consultation Complete</title>
+        
+        <!-- Set the character set and viewport size -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Import local CSS -->
+        <link rel="stylesheet" href="../css/userportalcss.css"/>
+    </h:head>
+    <h:body>
+        <h:form id="logoutForm">
+            <h:commandLink id="logoutBtn" action="#{logoutBean.logout}"/>
+        </h:form>
+        <div class="navbar-wrapper">
+            <div class="container">
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="home.xhtml">The Hair Salon</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../user_portal/home.xhtml"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                                <li><a href="../user_portal/profilepage.xhtml"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                <li><a href="../consultation/hairstyling.xhtml"><span class="glyphicon glyphicon-scissors"></span> Hairstyling Consultation</a></li>
+                                <li><a href="../consultation/colour.xhtml"><span class="glyphicon glyphicon-filter"></span> Colour Consultation</a></li>
+                                <li><a href="../user_portal/viewpreviousvisits.xhtml"><span class="glyphicon glyphicon-info-sign"></span> Visit History</a></li>
+                                <c:if test="#{userProfileBean.isStylist}">
+                                    <li><a href="../stylist_portal/viewuserprofiles.xhtml"><span class="glyphicon glyphicon-star"></span> Manage Customers</a></li>
+                                </c:if>
+                                <li><a onclick="$('#logoutForm\\:logoutBtn').click()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Page display -->
+                <div>
+                    <h:form>
+                        <div class="container  extra-padding">
+                            <p class="midtext text-center">
+                                Thank you for completing the consultation!
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                We look forward to seeing you soon.
+                            </p>
+
+                        </div><!-- /.container -->
+                    </h:form>
+                </div>
+
+                <footer class="footer">
+                </footer>
+            </div>
+        </div>
+    </h:body>
+</html>

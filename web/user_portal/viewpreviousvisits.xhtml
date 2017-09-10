@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- XML namespace declarations for using required XML tags -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:metadata>
+        <!-- viewParam for JSF to passthrough on form action -->
+        <f:viewParam id="username" name="username" value="#{visitView.username}" />
+    </f:metadata>
+    <h:head>
+        
+        <title>The Hair Salon</title>
+        
+        <!-- Set the character set and viewport size -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Import local CSS -->
+        <link rel="stylesheet" href="../css/userportalcss.css"/>
+    </h:head>
+    <h:body>
+        <!-- Link for logout action control -->
+        <h:form id="logoutForm">
+            <h:commandLink id="logoutBtn" action="#{logoutBean.logout}"/>
+        </h:form>
+
+        <!-- Navigation functionality, uses Bootstrap media queries -->
+        <div class="navbar-wrapper">
+            <!-- Wrap the page and navbar in a container to centre content -->
+            <div class="container">
+                <!-- Create an inverse coloured (grey and black) navbar -->
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <!-- Navbar mobile view collapsible menu button -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="../index.xhtml">The Hair Salon</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="home.xhtml"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                                <li><a href="profilepage.xhtml"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                <li><a href="../consultation/hairstyling.xhtml"><span class="glyphicon glyphicon-scissors"></span> Hairstyling Consultation</a></li>
+                                <li><a href="../consultation/colour.xhtml"><span class="glyphicon glyphicon-filter"></span> Colour Consultation</a></li> 
+                                <li class="active"><a href="../user_portal/viewpreviousvisits.xhtml"><span class="glyphicon glyphicon-info-sign"></span> Visit History</a></li>
+                                <c:if test="#{userProfileBean.isStylist}">
+                                    <li><a href="../stylist_portal/viewuserprofiles.xhtml"><span class="glyphicon glyphicon-star"></span> Manage Customers</a></li>
+
+                                </c:if>
+                                <li><a onclick="$('#logoutForm\\:logoutBtn').click()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Wrap the rest of the page in another container to center all the content. -->
+                <div>
+                    <div class="container  extra-padding">
+
+                        <h3 class="bigtext">#{visitView.fullname}: Previous Visits</h3>
+
+                        <p class="midtext"></p>
+
+                        <f:view>
+                            <h:form id="profileUpdate">
+                                <!--Visit history table -->
+                                <h:dataTable class="smalltextlbl" value="#{visitView.visits}" var="visits" 
+                                             styleClass="table"
+                                             headerClass="table-header"
+                                             rowClasses="table-odd-row,table-even-row">
+                                    <h:column>
+                                        <f:facet name="header">Date</f:facet>
+
+                                        <p>#{visits.date}</p>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Service</f:facet>
+                                        <p>#{visits.serviceType}</p>
+                                    </h:column>
+                                    <h:column rendered="#{userProfileBean.isStylist}">
+                                        <f:facet name="header">Notes</f:facet>
+                                        <p>#{visits.comments}</p>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </f:view>
+                    </div><!-- /.container -->
+                </div>
+
+                <footer class="footer">
+                </footer>
+            </div>
+        </div>
+    </h:body>
+</html>

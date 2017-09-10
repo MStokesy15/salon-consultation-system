@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- XML namespace declarations for using required XML tags -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+
+        <title>The Hair Salon - Hairstyling Consultation</title>
+
+        <!-- Set the character set and viewport size -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Import local CSS and JS -->
+        <link rel="stylesheet" href="../css/userportalcss.css"/>
+        <script src="../consultation/hsconsultation.js"></script>
+    </h:head>
+    <h:body>
+        <!-- Link for logout action control -->
+        <h:form id="logoutForm">
+            <h:commandLink id="logoutBtn" action="#{logoutBean.logout}"/>
+        </h:form>
+        
+        <!-- Navigation functionality, uses Bootstrap media queries -->
+        <div class="navbar-wrapper">
+            <!-- Wrap the page and navbar in a container to centre content -->
+            <div class="container">
+                <!-- Create an inverse coloured (grey and black) navbar -->
+                <nav class="navbar navbar-inverse navbar-static-top">
+                    <div class="container">
+                        <!-- Navbar mobile view collapsible menu button -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="../index.xhtml">The Hair Salon</a>
+                        </div>
+                        <!-- Navbar menu items list -->
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="../user_portal/home.xhtml"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                                <li><a href="../user_portal/profilepage.xhtml"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                <li class="active"><a href="../consultation/hairstyling.xhtml"><span class="glyphicon glyphicon-scissors"></span> Hairstyling Consultation</a></li>
+                                <li><a href="../consultation/colour.xhtml"><span class="glyphicon glyphicon-filter"></span> Colour Consultation</a></li>
+                                <li><a href="../user_portal/viewpreviousvisits.xhtml"><span class="glyphicon glyphicon-info-sign"></span> Visit History</a></li>
+                                <c:if test="#{userProfileBean.isStylist}">
+                                    <li><a href="../stylist_portal/viewuserprofiles.xhtml"><span class="glyphicon glyphicon-star"></span> Manage Customers</a></li>
+                                </c:if>
+                                <li><a onclick="$('#logoutForm\\:logoutBtn').click()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Wrap the rest of the page in another container to centre all the content. -->
+                <div>
+                    <div class="container  extra-padding">
+                        <h:form class="form-hair-styling" id="formHairstyling" enctype="multipart/form-data">
+                            <div class='borderless' id="consultation" tabindex="0">
+                                <!--Injection point-->
+                            </div>
+                            <!-- Hidden buttons for accessing JSF/Java objects from JS 
+                                 This first section sets view scoped variables -->
+                            <h:inputHidden a:hidden="hidden" a:type="text" value="#{hairStylingConsultation.serviceType}" id="serviceType" a:required="required"/>
+                            <h:inputHidden a:hidden="hidden" a:type="text" value="#{hairStylingConsultation.clientLikes}" id="clientLikes" a:required="required"/>
+                            <h:inputHidden a:hidden="hidden" a:type="text" value="#{hairStylingConsultation.clientDislikes}" id="clientDislikes" a:required="required"/>
+                            <h:inputHidden a:hidden="hidden" a:type="text" value="#{hairStylingConsultation.clientHomeStyle}" id="clientHomeStyle" a:required="required"/>
+                            <h:inputHidden a:hidden="hidden" a:type="text" value="#{hairStylingConsultation.clientHomeProducts}" id="clientHomeProducts" a:required="required"/>
+                            <h:inputHidden a:hidden="hidden" a:type="text" value="#{hairStylingConsultation.clientLikesStyles}" id="clientLikesStyles" a:required="required"/>
+                            <h:inputHidden a:hidden="hidden" a:type="date" value="#{hairStylingConsultation.appointmentDate}" id="appointmentDate" a:required="required">
+                                <f:convertDateTime type="date" pattern="yyyy-MM-dd" timeZone="GB"/>
+                            </h:inputHidden>
+                            <h:inputFile style="display: none;" styleClass="btn btn-primary btn-padding clientPhoto" value="#{hairStylingConsultation.clientPhoto}" id="clientPhoto" a:required="required">
+                                <f:ajax render="imginput"/>
+                            </h:inputFile>
+
+                            <!-- Link to execute submitHSConsultation function from JS -->
+                            <h:commandLink id="submitHSConsultation" action="#{hairStylingConsultation.submitHSConsultation}"/>
+                            <h:panelGrid columns="1" id="imginput">
+                                <!-- Displays the selected image if it has been set -->
+                                <c:if test="#{hairStylingConsultation.clientPhoto != null}">
+                                    <br/>
+                                    <h:outputLabel class="smalltext clientPhoto" value="Click finish if you are happy with your photo or upload a new one!" />
+                                    <o:graphicImage value="#{imageBean.clientPhoto}" class="image clientPhoto" lastModified="#{imageBean.lastModified}"/>
+                                </c:if>
+                            </h:panelGrid>
+
+                            <!-- Displays JSF & custom error messages here -->
+                            <h:messages/>
+                        </h:form>
+                    </div>
+                </div>
+
+                <!-- Footer containing buttons to control pagination in JS -->
+                <footer class="footer">
+                    <nav aria-label="...">
+                        <ul class="pager">
+                            <li class="previous"><a onclick='previousPage()' id='previousButton'>Previous</a></li>
+                            <li class="next"><a onclick='nextPage()' id='nextButton'>Next</a></li>
+                            <li class="next"><a onclick='submitConsultation()' id='finishButton'>Finish</a></li>
+                        </ul>
+                    </nav>
+                </footer>
+            </div>
+        </div>
+    </h:body>
+</html>

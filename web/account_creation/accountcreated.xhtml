@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- XML namespace declarations for using required XML tags -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    
+    <h:head>
+        <title>Create Account</title>
+        
+        <!-- Set the character set and viewport size -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
+        <!-- Latest compiled and minified Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Latest compiled Bootstrap JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <!-- Import local CSS and JS -->
+        <link rel="stylesheet" href="../css/login.css"/>
+    </h:head>
+    <h:body>
+    <div class="container">
+      <h:form id="inputForm" class="form-signin">
+            <h3 class="form-signin-heading">Account Created</h3>
+            <p>You may now log on to access your home!</p>
+            <a href="/SalonConsultationSystemJava/user_portal/home.xhtml" class="btn btn-block btn-primary btn-grey">Login</a>
+            <a href="/SalonConsultationSystemJava/index.xhtml" class="btn btn-block btn-primary btn-grey"><span class="glyphicon glyphicon-home"></span> Home</a>
+            <h:messages/>
+      </h:form>
+
+    </div> <!-- /container -->
+    </h:body>
+</html>

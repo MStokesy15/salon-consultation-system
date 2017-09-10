@@ -1,0 +1,132 @@
+<div>
+    <!-- Page 1 - What service would you like to book? -->
+    <div data-role="page" class="pagediv" id="p1">
+        <div data-role="main" class="ui-content">
+            <h3 class="midtext">What service would you like to book?</h3>
+            <br/>
+            <div class="text-center" data-toggle="buttons">
+                <a class="btn btn-primary btn-padding" onclick='nextPage("Blowdry")' autocomplete="off">Blowdry</a>
+                <a class="btn btn-primary btn-padding" onclick='nextPage("Haircut")' autocomplete="off">Hair Cut</a>
+                <a class="btn btn-primary btn-padding" onclick='nextPage("Hairup")' autocomplete="off">Hair Put Up</a>
+                <a class="btn btn-primary btn-padding" onclick='nextPage("Braid")' autocomplete="off">Braiding</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2 - When is your appointment? -->
+    <div data-role="page" class="pagediv" id="p2">
+        <div data-role="main" class="ui-content">
+            <h3 class="midtext">Please enter your appointment date:</h3>
+            <br/>
+            <input type="date" id="aptDate" autofocus="autofocus"/>
+        </div>
+    </div>
+    
+    <!-- Page 3 - What do you like about your hair? -->
+    <div data-role="page" class="pagediv" id="p3">
+        <div data-role="main" class="ui-content">
+            <h3 class="midtext">What do you like about your hair?</h3>
+            <br/>
+            <div class="text-center" data-toggle="buttons">
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="likeLength"> Length
+                </label>
+                <label class="btn btn-primary btn-padding ">
+                    <input type="checkbox" autocomplete="off" id="likeVolume"> Volume
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="likeSmoothness"> Smoothness
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="likeCurls"> Curls
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="likeColour"> Colour
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="likeMovement"> Movement
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="likeThickness"> Thickness
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="likeEasyToStyle"> Easy to style
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4 - What do you dislike about your hair? -->
+    <div data-role="page" class="pagediv" id="p4">
+        <div data-role="main" class="ui-content">
+            <h3 class="midtext">What do you dislike about your hair?</h3>
+            <br/>
+            <div class="text-center" data-toggle="buttons">
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="dislikeDryness"> Dryness
+                </label>
+                <label class="btn btn-primary btn-padding ">
+                    <input type="checkbox" autocomplete="off" id="dislikeSplitEnds"> Split Ends
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="dislikeDull"> Dull
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="dislikeLackOfVolume"> Lack of Volume
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="dislikeStyleDoesNotLast"> Style Does Not Last
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="dislikeDamage"> Damage
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="dislikeFrizzy"> Frizzy
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="dislikeOily"> Oily
+                </label>
+                <label class="btn btn-primary btn-padding">
+                    <input type="checkbox" autocomplete="off" id="dislikeThickness"> Thickness
+                </label>
+            </div>        
+        </div>
+    </div>
+
+    <!-- Page 5 - How do you style your hair at home? -->
+    <div data-role="page" class="pagediv" id="p5">
+        <div data-role="main" class="ui-content">
+            <h3 class="midtext">How do you style your hair at home?</h3>
+            <br/>
+            <input type="text" autofocus="autofocus" class="input-field" id="homeStyle" placeholder="Please Enter Comments Here"/>
+        </div>
+    </div>
+
+    <!-- Page 6 - What products do you use on your hair? -->
+    <div data-role="page" class="pagediv" id="p6">
+        <div data-role="main" class="ui-content">
+            <h3 class="midtext">What products do you use on your hair?</h3>
+            <br/>
+            <input type="text" autofocus="autofocus" class="input-field" id="homeProducts" placeholder="Please Enter Comments Here"/>
+        </div>
+    </div>
+
+    <!-- Page 7 - Likes Styles -->
+    <div data-role="page" class="pagediv" id="p7">
+        <div data-role="main" class="ui-content">
+            <h3 class="midtext">What styles do you like?</h3>
+            <br/>
+            <input type="text" autofocus="autofocus" class="input-field" id="likesStyles" placeholder="Please Enter Comments Here"/>
+            <!--input type="file" class="input-field" id="clientPhoto"/-->
+        </div>
+    </div>
+
+    <!-- Page 8 - Check and finish -->
+    <div data-role="page" class="pagediv" id="p8">
+        <div data-role="main" class="ui-content">
+            <p>Please upload a photo of yourself.</p>
+            <!--video autoplay="autoplay" id="videoElement" class="cam"></video-->
+        </div>
+    </div>
+
+</div>
